@@ -35,7 +35,13 @@ int load_program(FILE* f, int line, statement** stmt) {
 		}
 		fprintf(stderr, "Bad format at line %d\n", line);
 		return -2;
-	} 
+	} else if (sc!= EOF)
+	{
+		char buf[1024];
+		fprintf(stderr, "Not a statement at %d\n", line);
+		fgets(buf, 1024, f);
+		return load_program(f, line+1, stmt);
+	}
 	fprintf(stderr, "Scanned: %d: '%c', '%c', '%c', Program fininshed at line %d\n", sc, read, state, write, line);
 	return 0;
 }
