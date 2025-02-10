@@ -1,0 +1,2 @@
+CFLAGS+=$(shell pkg-config --cflags libuv)
+LIBS+=$(shell pkg-config --cflags libuv)

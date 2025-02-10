@@ -1,0 +1,19 @@
+Expression := Abstraction | Application | Variable
+Application := '(' Expression ' ' Expression')'
+Abstraction := '[' Variable ' ' Expression ']'
+Variable := ([a-z] | [A-Z])+
+
+
+Phone := '+'? CountryCode? LoocalPhone
+CountryCode := CountryNumber? CityCode
+CityCode := Parenthized | NotParenthized
+Parenthizes := '(' Digits ')'
+ErrorParenthized: '(' ')' -> Execption
+NotParenthized := Digits
+LocalPhone := Digits ('-' Digits)*
+Digits := [0-9] Digits? // праворекурсивные 
+CountryNumber := Digits
+
+
+Expression := Expression '+' Expression | Expression '*' Expression | Number | Variable // леворекурсивное
+
